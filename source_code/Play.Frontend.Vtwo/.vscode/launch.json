@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Server",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "start"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Client",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/src"
+        },
+        {
+            "name": "Dynamic Python: File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "justMyCode": true
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Client",
+            "configurations": [
+                "Server",
+                "Client"
+            ]
+        }
+    ]
+}

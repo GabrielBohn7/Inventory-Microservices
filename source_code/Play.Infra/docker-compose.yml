@@ -1,0 +1,33 @@
+#$ docker run -d --rm --name mongo -p 27017:27017 -v  mongodbdata:/data/db mongo
+#$ docker ps
+#dotnet add package MongoDB.Driver
+#dotnet add package Microsoft.Extensions.Configuration
+#dotnet add package Microsoft.Extensions.Configuration.Binder
+#dotnet add package Microsoft.Extensions.DependencyInjection
+#dotnet pack -o ..\..\..\packages
+#dotnet nuget add source D:\projects\packages -n PlayEconomy
+#dotnet add package Play.Common
+version: "3.8"
+
+services: 
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
+    volumes: 
+      - mongodbdata:/data/db
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports: 
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    hostname: rabbitmq
+
+volumes: 
+  mongodbdata:
+  rabbitmqdata:

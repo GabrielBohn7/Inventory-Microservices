@@ -1,0 +1,34 @@
+$ docker run -d --rm --name mongo -p 27017:27017 -v  mongodbdata:/data/db mongo
+$ docker ps
+$ docker stop
+$ docker-compose up -d
+dotnet add package MongoDB.Driver
+dotnet add package Microsoft.Extensions.Configuration
+dotnet add package Microsoft.Extensions.Configuration.Binder
+dotnet add package Microsoft.Extensions.DependencyInjection
+dotnet pack -o ..\..\..\packages
+dotnet nuget add source D:\projects\packages -n PlayEconomy
+
+//add comun nugetPackage (for DB)
+dotnet add package Play.Common
+
+dotnet pack -p:PackageVersion=1.0.3 -o ../../../packages
+
+dotnet new webapi -n Play.Inventory.Service
+
+
+
+add build on task.json (vscode)
+
+
+//rabbitmq
+http://localhost:15672/
+
+
+//build Identity
+dotnet aspnet-codegenerator identity --files "Account.Register"
+
+
+//add UserSecretsId
+dotnet add user-secrets init
+dotnet user-secrets set "IdentitySettings:AdminUserPassword" "squi3ows"
